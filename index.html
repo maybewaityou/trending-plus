@@ -405,7 +405,20 @@
           { src: "plugin/notes/notes.js", async: true },
           { src: "plugin/highlight/highlight.js", async: true },
           { src: "plugin/zoom-js/zoom.js", async: true }
-        ]
+        ],
+
+        // Parallax background image
+        parallaxBackgroundImage:
+          "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg", // e.g. "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg"
+
+        // Parallax background size
+        parallaxBackgroundSize: "2100px 900px", // CSS syntax, e.g. "2100px 900px" - currently only pixels are supported (don't use % or auto)
+
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: 200,
+        parallaxBackgroundVertical: 50
       });
     </script>
   </body>
