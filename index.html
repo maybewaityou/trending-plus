@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width，initial-scale=1.0，maximum-scale=1.0，user-scalable=no"
+    />
+
+    <title>APP 跨平台开发技术分析</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/black.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>APP 跨平台开发技术分析</h2>
+          <br />
+          <p>
+            <small
+              >Created by
+              <a href="https://github.com/maybewaityou">董春男</a></small
+            >
+          </p>
+        </section>
+
+        <!-- 大纲 -->
+        <section id="fragments">
+          <h3>大纲</h3>
+          <br />
+          <ol>
+            <li>技术背景</li>
+            <li class="fragment">技术方案</li>
+            <li class="fragment">框架成熟度</li>
+            <li class="fragment">行业技术统计</li>
+            <li class="fragment">React Native</li>
+            <li class="fragment">公司案例与行业采用</li>
+            <li class="fragment">技术积累与沉淀</li>
+            <li class="fragment">总结与展望</li>
+          </ol>
+        </section>
+
+        <!-- 1. 技术背景 -->
+        <section>
+          <h3>技术背景</h3>
+          <br />
+          <p>
+            APP 跨平台开发是目前比较热门的方向，采用 Web 框架开发，以 Web
+            的开发体验快速构建应用，提高了迭代的效率。同时 Web
+            开发方式大多使用动态语言，能够绕过原生开发限制动态加载，因此具备热加载、热更新的能力。用跨平台技术开发的应用无论性能还是用户体验都很接近原生应用。
+          </p>
+        </section>
+
+        <!-- 2. 技术方案 -->
+        <section>
+          <section>
+            <h2>技术方案</h2>
+          </section>
+          <section>
+            <h3>1. Cordova / WebView</h3>
+            <br />
+            <p>
+              利用 Android 和 iOS 上的 WebView 容器，APP 能够执行 html、css 和
+              js 脚本，展示 web 页面。如果需要原生功能就添加 bridge 供
+              JavaScript 调用。具有开发效率高、跨平台、支持动态发布等特点。
+            </p>
+          </section>
+          <section>
+            <h3>2. React Native</h3>
+            <br />
+            <p>
+              React Native 这类方案，使用 JavaScript
+              来构建界面，在运行时翻译成原生组件展示出来，实际上所有界面都是用原生组件。支持跨平台，热加载，性能和用户体验高于
+              WebView，更接近原生应用，是当前热门的跨平台开发技术。
+            </p>
+          </section>
+          <section>
+            <h3>3. Flutter</h3>
+            <br />
+            <p>
+              Flutter
+              使用了一种全新的方式，自己重写了一个平台无关的渲染引擎，它只提供画布，所有的
+              UI
+              组件、渲染逻辑都是在这个引擎上处理的。最大程度上保证了各平台下的一致性，同时也拥有媲美原生的高性能体验。
+            </p>
+          </section>
+        </section>
+
+        <!-- 3. 框架成熟度 -->
+        <section>
+          <section>
+            <h2>框架成熟度</h2>
+          </section>
+          <section>
+            React Native 是在 2015 年发布的，经过 4
+            年多的发展，已经比较成熟。React Native
+            社区发展也很活跃，贡献了大量的开源代码。
+          </section>
+          <section>
+            Flutter 是在 2018年 6
+            月份才推出发布预览版，社区也刚刚发展。所以，Flutter 还需要时间。
+          </section>
+          <section>
+            以 Github 上打开的 issue 的数量来看，截止到 2018-10-28，React Native
+            有 630 个，Flutter 有 5000+，这也说明了 Flutter 目前尚不稳定，所以
+            Flutter 不在本次选型之内。
+          </section>
+        </section>
+
+        <!-- 4. 行业技术统计 -->
+        <section>
+          <h3>行业技术统计</h3>
+          <br />
+          <a href="https://2018.stateofjs.com">全球 JS 技术调查</a>
+        </section>
+
+        <!-- 5. React Native -->
+        <section>
+          <section>
+            <h3>React Native</h3>
+          </section>
+          <section>
+            <p>
+              React Native 是 React 在原生移动应用平台的衍生产物，与 React
+              的区别在于虚拟 DOM 映射的对象是什么，React 中虚拟 DOM
+              最终会映射为浏览器 DOM 树，而 React Native 中虚拟 DOM 会通过
+              JavaScript Core 映射为原生控件树。
+            </p>
+          </section>
+          <section>
+            <p>React Native架构分析</p>
+            <img
+              src="lib/image/b0df98240d494bf27fc05e0d94751111_hd.jpg"
+              alt="架构图"
+            />
+          </section>
+          <section>
+            <p>
+              JavaScript Core 是一个 JavaScript 解释器，它在 React Native
+              中主要有两个作用：
+            </p>
+            <ol>
+              <li class="fragment">为 JavaScript 提供运行环境</li>
+              <li class="fragment">是 JavaScript 与原生应用之间通信的桥梁</li>
+            </ol>
+          </section>
+          <section>
+            <p>React Native 中将虚拟 DOM 映射为原生控件的过程中分两步：</p>
+            <ol>
+              <li class="fragment">
+                布局消息传递，将虚拟 DOM 布局信息传递给原生
+              </li>
+              <li class="fragment">
+                原生根据布局信息通过对应的原生控件渲染控件树
+              </li>
+            </ol>
+          </section>
+          <section>
+            <p>
+              至此，React Native 便实现了跨平台。 相对于混合应用，由于 React
+              Native 是原生控件渲染，所以性能会比混合应用中 H5 好很多，同时
+              React Native 是 Web 开发技术栈，也只需维护一份代码
+            </p>
+          </section>
+          <section>
+            <h3>总结</h3>
+            <img src="lib/image/diff.png" alt="总结" />
+          </section>
+        </section>
+
+        <!-- 6. 公司案例与行业采用 -->
+        <section>
+          <section>
+            <h2>公司案例与行业采用</h2>
+          </section>
+          <section>
+            <h2>案例1</h2>
+          </section>
+          <section>
+            <h3>移动营销服务平台 - 上海银行</h3>
+            <img
+              src="lib/image/Screenshot_2019-01-20-15-40-53.png"
+              alt="移动营销服务"
+            />
+          </section>
+          <section>
+            <img src="lib/image/pad.png" alt="移动营销服务" />
+          </section>
+          <section>
+            <img
+              src="lib/image/Screenshot_2019-01-21-07-32-41.png"
+              alt="移动营销服务"
+            />
+          </section>
+          <section>
+            <img src="lib/image/micro-app.png" alt="移动营销服务" />
+          </section>
+          <section>
+            <h3>差异化更新</h3>
+          </section>
+          <section>
+            <img
+              src="lib/image/Screenshot_2019-01-20-15-40-53.png"
+              alt="移动营销服务"
+            />
+          </section>
+          <section>
+            <img src="lib/image/diff流程图.png" alt="移动营销服务" />
+          </section>
+          <section>
+            <h2>案例2</h2>
+          </section>
+          <section>
+            <h2>建启善源 - 建设银行武汉开发中心</h2>
+          </section>
+          <section>
+            <p>项目截图</p>
+            <span>
+              <img src="lib/image/471548035547_.pic_thumb_preview.jpg" alt="" />
+              <img src="lib/image/481548035548_.pic_thumb_preview.jpg" alt="" />
+              <img src="lib/image/491548035549_.pic_thumb_preview.jpg" alt="" />
+              <img src="lib/image/501548035549_.pic_thumb_preview.jpg" alt="" />
+              <img src="lib/image/511548035550_.pic_thumb_preview.jpg" alt="" />
+              <img src="lib/image/521548035551_.pic_thumb_preview.jpg" alt="" />
+              <img src="lib/image/581548035693_.pic_thumb_preview.jpg" alt="" />
+            </span>
+          </section>
+          <section>
+            <h3>同行业相关案例</h3>
+            <br />
+            <ol>
+              <li class="fragment">智能风控项目 (风险助手) - 中国银行</li>
+              <li class="fragment">上海银行手机银行 - 上海银行</li>
+              <li class="fragment">信用卡营销 - 上海银行</li>
+              <li class="fragment">CRM - 上海银行</li>
+              <li class="fragment">移动营销 - 百信银行</li>
+            </ol>
+          </section>
+          <section>
+            <h3>互联网公司采用情况</h3>
+            <br />
+            <ol>
+              <li class="fragment">手机百度</li>
+              <li class="fragment">手机 QQ，QQ 空间，QQ 音乐</li>
+              <li class="fragment">京东商城，京东金融</li>
+              <li class="fragment">携程 App</li>
+              <li class="fragment">爱奇艺</li>
+              <li class="fragment">美团</li>
+              <li class="fragment">抖音</li>
+              <li class="fragment">58 同城</li>
+              <li class="fragment">去哪儿</li>
+              <li class="fragment">...</li>
+            </ol>
+          </section>
+        </section>
+
+        <!-- 7. 技术积累与沉淀 -->
+        <section>
+          <section>
+            <h2>技术积累与沉淀</h2>
+          </section>
+          <section>
+            <h3>应用主要技术栈 (React Native)</h3>
+            <br />
+            <ul>
+              <li class="fragment">
+                <span>JS 层: </span>
+                <ul>
+                  <li class="fragment">
+                    typescript + 自定义数据流 (redux + redux-observable + rxjs +
+                    reselector) + 自定义框架
+                  </li>
+                  <li class="fragment">
+                    typescript + 自定义数据流 (react-bloc)
+                  </li>
+                </ul>
+                <!-- <span class="fragment"></span> -->
+              </li>
+              <li class="fragment">
+                <span>原生层: </span>
+                <span class="fragment"
+                  >只提供基础服务 (拍照，百度地图，定位，轮询，外设调用等)</span
+                >
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>第三方库与工具</h3>
+            <img
+              src="lib/image/WX20190121-020225@2x.png"
+              data-prevent-swipe
+              alt="vendor"
+            />
+          </section>
+          <section>
+            <h2>自定义插件与代码模板</h2>
+          </section>
+          <section>
+            <h3>VS Code:</h3>
+            <img
+              class="fragment"
+              src="lib/image/WX20190721-074405@2x.png"
+              alt="vscode"
+            />
+            <img
+              class="fragment"
+              src="lib/image/WX20190721-074456@2x.png"
+              alt="vscode"
+            />
+          </section>
+          <section>
+            <h3>Atom</h3>
+            <p>
+              <span class="fragment"
+                ><img src="lib/image/WX20190721-075200@2x.png" alt="vscode"
+              /></span>
+            </p>
+          </section>
+          <section>
+            <p>交互式命令行工具</p>
+            <img
+              class="fragment"
+              style="max-width: 400px!important;"
+              src="/lib/image/WX20190721-075729@2x.png"
+              alt=""
+            />
+            <ul>
+              <li class="fragment">新建项目 (react/react native/koa)</li>
+              <li class="fragment">新建业务模块</li>
+              <li class="fragment">新建 Container 模块</li>
+              <li class="fragment">新建第三方工具</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- 8. 总结与展望 -->
+        <section>
+          <section>
+            <h2>总结与展望</h2>
+          </section>
+          <section>
+            <h3>总结</h3>
+            <br />
+            <p>
+              当我们选择一个技术时，社区生态是一个重要的考量。一个繁荣的社区，有很多成熟的工具、库、工程体系、最佳实践可以供我们使用和借鉴。无论从框架的成熟度，开发效率，社区，兼容性，动态性，性能等方面考虑，React
+              Native 无疑是现阶段最适合的移动端跨平台开发的框架。
+            </p>
+          </section>
+          <section>
+            <h3>展望</h3>
+            <br />
+            <ol>
+              <li class="fragment">
+                我们将为命令行工具添加新的功能，直接生成原生相关模块,
+                并提供代码编写规范，自动实现注册原生模块功能,
+                使开发人员只需关注原生功能的实现。
+              </li>
+              <li class="fragment">
+                我们将寻找使 React Native 开发的项目，直接生成 H5 页面的方法，
+                也就是说，同一份项目，能够生成 Android App，iOS App 和 HTML
+                页面，以适配更多的终端设备。
+              </li>
+            </ol>
+            <p class="fragment">
+              任重而道远，我们仍需要经历长期的奋斗。
+            </p>
+          </section>
+        </section>
+
+        <!-- 9. 致谢 -->
+        <section>
+          <h2>Think you</h2>
+          <p>感谢大家百忙之中抽出时间，希望大家有所收获。</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: "plugin/markdown/marked.js" },
+          { src: "plugin/markdown/markdown.js" },
+          { src: "plugin/notes/notes.js", async: true },
+          { src: "plugin/highlight/highlight.js", async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
